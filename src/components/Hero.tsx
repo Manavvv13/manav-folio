@@ -62,7 +62,7 @@ export const Hero: React.FC<HeroProps> = ({ activeTab = 'home', onNavigate }) =>
         <div className="relative w-full min-h-[520px] sm:min-h-[640px] lg:min-h-[720px] flex items-end justify-center">
 
           {/* Left Text Block (Smooth staggered entrance on page load) */}
-          <div className="absolute left-3 sm:left-4 md:left-2 lg:left-3 xl:left-4 top-[14%] sm:top-[18%] md:top-[47%] lg:top-[42%] z-30 max-w-[270px] sm:max-w-md pointer-events-auto">
+          <div className="absolute left-3 sm:left-4 md:left-2 lg:left-3 xl:left-4 top-[19%] sm:top-[23%] md:top-[47%] lg:top-[42%] z-30 max-w-[270px] sm:max-w-md pointer-events-auto">
             <div>
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
