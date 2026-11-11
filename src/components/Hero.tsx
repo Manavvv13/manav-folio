@@ -62,7 +62,7 @@ export const Hero: React.FC<HeroProps> = ({ activeTab = 'home', onNavigate }) =>
         <div className="relative w-full min-h-[520px] sm:min-h-[640px] lg:min-h-[720px] flex items-end justify-center">
 
           {/* Left Text Block (Smooth staggered entrance on page load) */}
-          <div className="absolute left-2 sm:left-4 md:left-2 lg:left-3 xl:left-4 top-[18%] sm:top-[22%] md:top-[47%] lg:top-[42%] z-30 max-w-[280px] sm:max-w-md pointer-events-auto">
+          <div className="absolute left-3 sm:left-4 md:left-2 lg:left-3 xl:left-4 top-[14%] sm:top-[18%] md:top-[47%] lg:top-[42%] z-30 max-w-[270px] sm:max-w-md pointer-events-auto">
             <div>
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
@@ -94,20 +94,20 @@ export const Hero: React.FC<HeroProps> = ({ activeTab = 'home', onNavigate }) =>
                 And Market to be Chosen.
               </motion.p>
 
-              {/* Mobile Phone Subtext: Strictly only for Mobile Phones */}
+              {/* Mobile Phone Subtext: High-contrast frosted card ensuring 100% visibility over video */}
               <motion.div
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.44, ease: [0.16, 1, 0.3, 1] }}
-                className="md:hidden mt-1.5 flex flex-col gap-1.5"
+                className="md:hidden mt-2 p-3 sm:p-3.5 rounded-2xl bg-[#F2E7DA]/92 backdrop-blur-xl border border-black/10 shadow-[0_8px_24px_rgba(0,0,0,0.12)] max-w-[250px] flex flex-col gap-1.5"
               >
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/6 border border-black/10 w-fit">
+                <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-black/6 border border-black/10 w-fit">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#FF5500] animate-pulse" />
-                  <span className="text-[11px] font-mono text-[#554E46] font-medium tracking-wide">
+                  <span className="text-[10px] font-mono text-[#332C24] font-bold tracking-wide uppercase">
                     Desktop Experience
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm font-heading text-[#3B342C] font-medium leading-relaxed max-w-[240px]">
+                <p className="text-xs font-heading text-[#0A0A0A] font-semibold leading-snug">
                   Please open on a desktop or laptop for the full interactive visual experience.
                 </p>
               </motion.div>
@@ -164,7 +164,7 @@ export const Hero: React.FC<HeroProps> = ({ activeTab = 'home', onNavigate }) =>
                 WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 99%)',
                 maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 99%)',
               }}
-              className="relative z-20 w-[370px] sm:w-[540px] md:w-[610px] lg:w-[670px] max-h-[780px] select-none flex justify-center items-end"
+              className="relative z-20 w-[240px] sm:w-[360px] md:w-[610px] lg:w-[670px] max-h-[780px] select-none flex justify-center items-end"
             >
               <motion.video
                 src="/Manav%20Folio%20Video.webm"
