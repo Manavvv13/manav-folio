@@ -117,35 +117,38 @@ export function App() {
       <SmoothCursor />
 
       <main>
-        {/* 2. Hero Section with Navbar (Part of ONLY Hero section) */}
+        {/* 2. Hero Section with Navbar (Always visible on all screens) */}
         <Hero activeTab={activeTab} onNavigate={handleNavigate} />
 
-        {/* 4. Intro Statement Section (Fades to White #FFFFFF when moving halfway out of Hero) */}
-        <IntroStatement onMoreAbout={() => handleNavigate('about')} />
+        {/* Sections strictly only visible on Desktop / Laptop screens */}
+        <div className="hidden md:block">
+          {/* 4. Intro Statement Section (Fades to White #FFFFFF when moving halfway out of Hero) */}
+          <IntroStatement onMoreAbout={() => handleNavigate('about')} />
 
-        {/* 5. What I can Help you with? (Fades into Brownish #F2E7DA) */}
-        <ServicesSection />
+          {/* 5. What I can Help you with? (Fades into Brownish #F2E7DA) */}
+          <ServicesSection />
 
-        {/* 6. Visual Archive (Fades into White #FFFFFF) */}
-        <VisualArchive />
+          {/* 6. Visual Archive (Fades into White #FFFFFF) */}
+          <VisualArchive />
 
-        {/* 7. My Creative Toolkit (Fades into Black #000000) */}
-        <CreativeToolkit />
+          {/* 7. My Creative Toolkit (Fades into Black #000000) */}
+          <CreativeToolkit />
 
-        {/* 8. Beyond the Visuals (Deep Black #000000) */}
-        <BeyondVisuals
-          onSelectProject={setSelectedProject}
-          activeTab={projectsTab}
-          onTabChange={setProjectsTab}
-          onViewAllProjects={handleViewAllProjects}
-        />
+          {/* 8. Beyond the Visuals (Deep Black #000000) */}
+          <BeyondVisuals
+            onSelectProject={setSelectedProject}
+            activeTab={projectsTab}
+            onTabChange={setProjectsTab}
+            onViewAllProjects={handleViewAllProjects}
+          />
 
-        {/* 9. Great Things Begin Together (CTA Section - Blends from Black #000000 into Light Olive #7E8C58) */}
-        <CtaBanner />
+          {/* 9. Great Things Begin Together (CTA Section - Blends from Black #000000 into Light Olive #7E8C58) */}
+          <CtaBanner />
+
+          {/* 10. Footer (Pure White #FFFFFF with giant "Manav") */}
+          <Footer onNavigate={handleNavigate} />
+        </div>
       </main>
-
-      {/* 10. Footer (Pure White #FFFFFF with giant "Manav") */}
-      <Footer onNavigate={handleNavigate} />
 
       {/* 12. Case Study Inspection Modal */}
       <ProjectModal

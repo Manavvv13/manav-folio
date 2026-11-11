@@ -37,7 +37,7 @@ export const Hero: React.FC<HeroProps> = ({ activeTab = 'home', onNavigate }) =>
     <section
       id="hero"
       data-bg="#F2E7DA"
-      className="relative min-h-screen pt-28 sm:pt-32 pb-0 overflow-hidden flex flex-col justify-between bg-transparent"
+      className="relative h-screen md:min-h-screen pt-24 sm:pt-28 md:pt-32 pb-0 overflow-hidden flex flex-col justify-between bg-transparent"
     >
       {/* 0. Navbar: Part of Hero Section (Stays where it is at top of Hero) */}
       <Navbar activeTab={activeTab} onNavigate={onNavigate} />
@@ -59,16 +59,16 @@ export const Hero: React.FC<HeroProps> = ({ activeTab = 'home', onNavigate }) =>
 
       {/* 2. Main Hero Content Container */}
       <div className="max-w-[1600px] w-full mx-auto px-6 sm:px-10 lg:px-14 relative z-10 flex-1 flex flex-col justify-end">
-        <div className="relative w-full min-h-[580px] sm:min-h-[640px] lg:min-h-[720px] flex items-end justify-center">
+        <div className="relative w-full min-h-[520px] sm:min-h-[640px] lg:min-h-[720px] flex items-end justify-center">
 
           {/* Left Text Block (Smooth staggered entrance on page load) */}
-          <div className="absolute left-0 sm:left-1 md:left-2 lg:left-3 xl:left-4 top-[47%] sm:top-[45%] lg:top-[42%] z-30 max-w-md sm:max-w-lg pointer-events-auto">
+          <div className="absolute left-2 sm:left-4 md:left-2 lg:left-3 xl:left-4 top-[18%] sm:top-[22%] md:top-[47%] lg:top-[42%] z-30 max-w-[280px] sm:max-w-md pointer-events-auto">
             <div>
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                className="text-2xl sm:text-3xl lg:text-[32px] font-bold text-[#111111] font-heading mb-1"
+                className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#111111] font-heading mb-0.5 sm:mb-1"
               >
                 Hello I'm
               </motion.p>
@@ -77,21 +77,40 @@ export const Hero: React.FC<HeroProps> = ({ activeTab = 'home', onNavigate }) =>
                 initial={{ opacity: 0, y: 22 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.75, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
-                className="text-5xl sm:text-6xl lg:text-[68px] xl:text-[76px] font-black text-[#0A0A0A] font-heading tracking-tight mb-3 sm:mb-4"
+                className="text-4xl sm:text-5xl lg:text-[68px] xl:text-[76px] font-black text-[#0A0A0A] font-heading tracking-tight mb-2 sm:mb-4"
               >
                 {MANAV_PROFILE.firstName}
               </motion.h1>
 
+              {/* Desktop Subtext: Strictly only for Desktop / Laptop screens */}
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.44, ease: [0.16, 1, 0.3, 1] }}
-                className="text-base sm:text-lg lg:text-[19px] font-heading text-[#4A443E] leading-snug font-medium"
+                className="hidden md:block text-base sm:text-lg lg:text-[19px] font-heading text-[#4A443E] leading-snug font-medium"
               >
                 I Design to Get Noticed.
                 <br />
                 And Market to be Chosen.
               </motion.p>
+
+              {/* Mobile Phone Subtext: Strictly only for Mobile Phones */}
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.44, ease: [0.16, 1, 0.3, 1] }}
+                className="md:hidden mt-1.5 flex flex-col gap-1.5"
+              >
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/6 border border-black/10 w-fit">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF5500] animate-pulse" />
+                  <span className="text-[11px] font-mono text-[#554E46] font-medium tracking-wide">
+                    Desktop Experience
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm font-heading text-[#3B342C] font-medium leading-relaxed max-w-[240px]">
+                  Please open on a desktop or laptop for the full interactive visual experience.
+                </p>
+              </motion.div>
             </div>
           </div>
 
