@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Monitor } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { X, Monitor } from 'lucide-react';
 import { ProjectItem } from '../data/portfolioData';
 
 interface BeyondVisualsProps {
@@ -23,36 +23,42 @@ const WEBSITE_PROJECTS: WebsiteProject[] = [
     id: 'web-1',
     number: '01',
     colSpan: 'col-span-12 lg:col-span-7',
-    aspectClass: 'aspect-[16/10] sm:aspect-[16/9] min-h-[300px] sm:min-h-[420px]',
+    aspectClass: 'aspect-[16/10] sm:aspect-[16/9]',
+    image: '/web-1.png',
   },
   {
     id: 'web-2',
     number: '02',
     colSpan: 'col-span-12 lg:col-span-5',
-    aspectClass: 'aspect-[4/3] lg:aspect-auto min-h-[300px] sm:min-h-[420px]',
+    aspectClass: 'aspect-[16/10] sm:aspect-[16/9] lg:aspect-auto lg:h-full',
+    image: '/web-2.png',
   },
   {
     id: 'web-3',
     number: '03',
     colSpan: 'col-span-12 sm:col-span-6 lg:col-span-4',
-    aspectClass: 'aspect-[16/11] min-h-[260px] sm:min-h-[320px]',
+    aspectClass: 'aspect-[16/10] sm:aspect-[16/9]',
+    image: '/web-3.png',
   },
   {
     id: 'web-4',
     number: '04',
     colSpan: 'col-span-12 sm:col-span-6 lg:col-span-4',
-    aspectClass: 'aspect-[16/11] min-h-[260px] sm:min-h-[320px]',
+    aspectClass: 'aspect-[16/10] sm:aspect-[16/9]',
+    image: '/web-4.png',
   },
   {
     id: 'web-5',
     number: '05',
     colSpan: 'col-span-12 lg:col-span-4',
-    aspectClass: 'aspect-[16/11] min-h-[260px] sm:min-h-[320px]',
+    aspectClass: 'aspect-[16/10] sm:aspect-[16/9]',
+    image: '/web-5.png',
   },
 ];
 
 export const BeyondVisuals: React.FC<BeyondVisualsProps> = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   // Track scroll into this section for the continuous horizontal entrance
   const { scrollYProgress } = useScroll({
@@ -95,7 +101,7 @@ export const BeyondVisuals: React.FC<BeyondVisualsProps> = () => {
         </div>
 
         {/* 5-Item Pure Image Box Bento Grid */}
-        <div className="grid grid-cols-12 gap-5 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-12 gap-5 sm:gap-6 lg:gap-8 items-stretch">
           {WEBSITE_PROJECTS.map((project, idx) => (
             <motion.div
               key={project.id}
@@ -104,7 +110,12 @@ export const BeyondVisuals: React.FC<BeyondVisualsProps> = () => {
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -6, scale: 1.01 }}
-              className={`${project.colSpan} ${project.aspectClass} group relative rounded-[22px] sm:rounded-[28px] overflow-hidden bg-gradient-to-b from-[#131317] to-[#0A0A0D] border border-white/10 hover:border-white/30 transition-all duration-500 shadow-2xl flex flex-col justify-center items-center cursor-pointer will-change-transform`}
+              onClick={() => {
+                if (project.image) {
+                  setSelectedImage(project.image);
+                }
+              }}
+              className={`${project.colSpan} ${project.aspectClass} group relative rounded-[22px] sm:rounded-[28px] overflow-hidden bg-gradient-to-b from-[#131317] to-[#0A0A0D] border border-white/10 hover:border-white/35 transition-all duration-500 shadow-2xl flex flex-col justify-center items-center cursor-pointer will-change-transform`}
             >
               {/* Subtle Radial Dot Matrix Grid Background */}
               <div
@@ -120,7 +131,8 @@ export const BeyondVisuals: React.FC<BeyondVisualsProps> = () => {
                 <img
                   src={project.image}
                   alt={`Website ${project.number}`}
-                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out select-none"
                 />
               ) : (
                 /* Pure Image Placeholder Box */
@@ -138,6 +150,43 @@ export const BeyondVisuals: React.FC<BeyondVisualsProps> = () => {
         </div>
 
       </div>
+
+      {/* Full-Screen Lightbox Modal on Click */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-6xl max-h-[92vh] bg-[#111113] text-white rounded-2xl overflow-hidden shadow-2xl flex flex-col border border-white/10"
+            >
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center cursor-pointer transition-colors"
+                aria-label="Close Preview"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="overflow-auto flex-1 flex items-center justify-center p-2 sm:p-4">
+                <img
+                  src={selectedImage}
+                  alt="Website Preview"
+                  className="max-h-[82vh] w-auto object-contain rounded-lg select-none shadow-2xl"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
