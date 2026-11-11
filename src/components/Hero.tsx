@@ -164,7 +164,7 @@ export const Hero: React.FC<HeroProps> = ({ activeTab = 'home', onNavigate }) =>
                 WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 99%)',
                 maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 99%)',
               }}
-              className="relative z-20 w-[240px] sm:w-[360px] md:w-[610px] lg:w-[670px] max-h-[780px] select-none flex justify-center items-end"
+              className="relative z-20 w-[370px] sm:w-[540px] md:w-[610px] lg:w-[670px] max-h-[780px] select-none flex justify-center items-end"
             >
               <motion.video
                 src="/Manav%20Folio%20Video.webm"
